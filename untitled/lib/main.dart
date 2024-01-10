@@ -7,7 +7,7 @@ void main() {
         backgroundColor: Colors.blueGrey,
         body: Center(
           child: Image(
-            image: NetworkImage("https://th.bing.com/th/id/OIP.wKwptgE805PVLc_rzngaSQHaDt?rs=1&pid=ImgDetMain"),
+            image: AssetImage("images/diamond.png"),
           ),
         ),
         appBar:  AppBar(
