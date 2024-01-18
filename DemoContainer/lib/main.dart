@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
                   height: double.infinity,
                   width: 100,
                   color: Colors.white,
-                  child: Text("Containeer 1"),
+                  child: Text("Container 1"),
                 ),
                 Container(
 
