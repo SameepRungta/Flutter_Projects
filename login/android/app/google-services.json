@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "377812473523",
+    "project_id": "safesphere-99830",
+    "storage_bucket": "safesphere-99830.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377812473523:android:c4e61ffcb85a86053cc2c6",
+        "android_client_info": {
+          "package_name": "com.example.login"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXnYlvBsBw52l_ZULZrZYQGx23w5gNBAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
