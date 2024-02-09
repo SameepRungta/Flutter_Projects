@@ -117,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                 // logo
                 Center(
                   child: SvgPicture.asset(
-                    'images/spherelogo.png', // Replace with the actual path to your SVG file
+                    'images/spherelogo.svg', // Replace with the actual path to your SVG file
                     width: 100,
                     height: 100,
                   ),

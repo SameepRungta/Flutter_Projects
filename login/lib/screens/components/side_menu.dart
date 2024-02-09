@@ -11,7 +11,7 @@ class SideMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      width: MediaQuery.of(context).size.width / 1.5,
+      width: MediaQuery.of(context).size.width /1.5,
       child: ListView(
         shrinkWrap: true,
         children: [
@@ -19,12 +19,12 @@ class SideMenu extends StatelessWidget {
             height: 100,
             child: DrawerHeader(
                 child: Image.asset(
-              "images/brand.png",
+              "images/spherelogo.png",
             )),
           ),
           DrawerListTile(
             icon: TernavIcons.lightOutline.home_2,
-            title: "Overview",
+            title: "DashBoard",
             onTap: () {},
           ),
           DrawerListTile(
