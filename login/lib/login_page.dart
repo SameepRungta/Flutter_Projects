@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:login/components/my_button.dart';
 import 'package:login/components/my_textfield.dart';
 import 'package:login/components/square_tile.dart';
+import 'package:login/home_screen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:login/screens/main_screen.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTapRegister; // Add onTapRegister callback
@@ -30,30 +33,38 @@ class _LoginPageState extends State<LoginPage> {
       },
     );
 
-    // try sign in
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
+
       // pop the loading circle
       Navigator.pop(context);
+
+      // Navigate to DesktopScaffold after successful login
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => MainScreen()),
+      );
     } on FirebaseAuthException catch (e) {
       // pop the loading circle
       Navigator.pop(context);
-      // WRONG EMAIL
+
+      // Handle specific login errors
       if (e.code == 'user-not-found') {
         // show error to user
         wrongEmailMessage();
-      }
-
-      // WRONG PASSWORD
-      else if (e.code == 'wrong-password') {
+      } else if (e.code == 'wrong-password') {
         // show error to user
         wrongPasswordMessage();
+      } else {
+        // Handle other FirebaseAuthException errors
+        print('Error during login: ${e.message}');
       }
     }
   }
+
 
   // wrong email message popup
   void wrongEmailMessage() {
@@ -104,10 +115,14 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 50),
 
                 // logo
-                const Icon(
-                  Icons.lock,
-                  size: 100,
+                Center(
+                  child: SvgPicture.asset(
+                    'images/spherelogo.png', // Replace with the actual path to your SVG file
+                    width: 100,
+                    height: 100,
+                  ),
                 ),
+
 
                 const SizedBox(height: 50),
 

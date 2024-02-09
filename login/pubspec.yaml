@@ -38,11 +38,14 @@ dependencies:
   flutter_login: ^5.0.0
   firebase_auth: ^4.17.4
   firebase_core: ^2.25.4
+  fl_chart: ^0.36.1
+  ternav_icons: ^1.0.0
+  percent_indicator: ^4.2.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  flutter_svg: ^0.22.0
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -64,6 +67,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
      - images/
+     - images/box/
+     - images/pic/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -71,7 +76,10 @@ flutter:
 
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
-
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: fonts/Poppins-Regular.ttf
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
