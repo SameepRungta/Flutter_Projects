@@ -8,31 +8,31 @@ import '../model/statistics_model.dart';
 
 final List<Course> course = [
   Course(
-      text: "France",
-      lessons: "35 Lessons",
+      text: "Report an Incident",
+      lessons: "Report cyberbullying, get expert support, track progress. Take charge of online safety. We're here to help!",
       imageUrl: "images/pic/img1.png",
-      percent: 75,
+   
       backImage: "images/box/box1.png",
       color: kDarkBlue),
   Course(
-      text: "Portugese",
-      lessons: "30 Lessons",
+      text: "Community Forum",
+      lessons: "Overcome cyberbullying trauma with our counsellors. Chat for guidance, connect with domain experts. Start healing today!",
       imageUrl: "images/pic/img2.png",
-      percent: 50,
+      
       backImage: "images/box/box2.png",
       color: kOrange),
   Course(
-      text: "Italian",
-      lessons: "20 Lessons",
+      text: "All about Cyberbulling",
+      lessons: "Expand knowledge on cyberbullying, its types, causes, impact. Test understanding with our quiz",
       imageUrl: "images/pic/img3.png",
-      percent: 25,
+      
       backImage: "images/box/box3.png",
       color: kGreen),
   Course(
-      text: "German",
-      lessons: "40 Lessons",
+      text: "Cyber Safety",
+      lessons: "Stay updated on cybercrime trends and safety practices. Access resources, workshops. Let's create a safer online environment.",
       imageUrl: "images/pic/img4.png",
-      percent: 75,
+      
       backImage: "images/box/box4.png",
       color: kYellow),
 ];

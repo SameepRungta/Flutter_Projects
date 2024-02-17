@@ -59,7 +59,7 @@ class MainScreen extends StatelessWidget {
           // )
         ],
       ),
-      drawer: const SideMenu(),
+      drawer:  SideMenu(),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Padding(
@@ -70,12 +70,12 @@ class MainScreen extends StatelessWidget {
           RichText(
           text: TextSpan(
           text: "Hello ",
-            style: TextStyle(color: kDarkBlue, fontSize: 20),
+            style: TextStyle(color: Colors.grey.shade900, fontSize: 20),
             children: [
               TextSpan(
                 text: "${user.email}",
                 style: TextStyle(
-                  color: kDarkBlue,
+                  color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -109,27 +109,51 @@ class MainScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              const PlaningHeader(),
+              // const PlaningHeader(),
+              // const SizedBox(
+              //   height: 15,
+              // ),
+              // const PlaningGrid(),Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: const [
+              //     Text(
+              //       "My Courses",
+              //       style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+              //     ),
+              //     Text(
+              //       "View All",
+              //       style: TextStyle(color: kDarkBlue),
+              //     ),
+              //   ],
+              // ),
+              // const SizedBox(
+              //   height: 15,
+              // ),
+              // const CourseGrid(),
+              // const SizedBox(
+              //   height: 20,
+              // ),
+              // const PlaningHeader(),
               const SizedBox(
                 height: 15,
               ),
-              const PlaningGrid(),
+              // const PlaningGrid(),
               const SizedBox(
                 height: 15,
               ),
-              const Text(
-                "Statistics",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              const StatisticsGrid(),
-              const SizedBox(
-                height: 15,
-              ),
-              const ActivityHeader(),
-              const ChartContainer(chart: BarChartContent())
+              // const Text(
+              //   "Statistics",
+              //   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              // ),
+              // const SizedBox(
+              //   height: 15,
+              // ),
+              // const StatisticsGrid(),
+              // const SizedBox(
+              //   height: 15,
+              // ),
+              // const ActivityHeader(),
+              // const ChartContainer(chart: BarChartContent())
             ],
           ),
         ),

@@ -24,32 +24,43 @@ class CourseGrid extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        course[index].text,
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                      Text(
-                        course[index].lessons,
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                      CircularPercentIndicator(
-                        radius: 30,
-                        lineWidth: 8,
-                        animation: true,
-                        animationDuration: 1500,
-                        circularStrokeCap: CircularStrokeCap.round,
-                        percent: course[index].percent / 100,
-                        progressColor: Colors.white,
-                        center: Text(
-                          "${course[index].percent}%",
+                  Container(
+                    height: 150,
+                    width: 200,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          course[index].text,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold, // Set the text to bold
+                            fontSize: 18.0, // Set the font size to your desired value
+                          ),
+                        )
+                    ,
+                        Text(
+
+                          course[index].lessons,
+                          textAlign: TextAlign.left,
                           style: const TextStyle(color: Colors.white),
                         ),
-                      )
-                    ],
+                        // CircularPercentIndicator(
+                        //   radius: 30,
+                        //   lineWidth: 8,
+                        //   animation: true,
+                        //   animationDuration: 1500,
+                        //   circularStrokeCap: CircularStrokeCap.round,
+                        //   percent: course[index].percent / 100,
+                        //   progressColor: Colors.white,
+                        //   center: Text(
+                        //     // "${course[index].percent}%",
+                        //     style: const TextStyle(color: Colors.white),
+                        //   ),
+                        // )
+                      ],
+                    ),
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
