@@ -42,6 +42,12 @@ dependencies:
   ternav_icons: ^1.0.0
   percent_indicator: ^4.2.2
   google_sign_in: ^6.2.1
+  google_fonts: ^6.1.0
+  cloud_firestore: ^4.15.5
+  http: any
+  url_launcher: any
+  firebase_database: ^10.3.2
+  uuid: ^3.0.4
 
 dev_dependencies:
   flutter_test:

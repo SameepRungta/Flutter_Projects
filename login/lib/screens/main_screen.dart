@@ -1,65 +1,68 @@
-import 'package:login/screens/components/chart_container.dart';
-import 'package:login/widgets/activity_header.dart';
-import 'package:login/widgets/bar_chart.dart';
-import 'package:login/widgets/courses_grid.dart';
-import 'package:login/widgets/planing_grid.dart';
-import 'package:login/widgets/statistics_grid.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:login/dashboard/community.dart';
 import 'package:login/login_page.dart';
-import '../constant.dart';
-import '../widgets/planing_header.dart';
+import 'package:login/widgets/news_widget.dart';
 import 'components/side_menu.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-
+import 'package:login/dashboard/incident_report.dart';
+import 'package:login/dashboard/community.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:login/dashboard/bully.dart';
+import 'package:login/components/functions.dart';
 
 class MainScreen extends StatelessWidget {
-   MainScreen({Key? key}) : super(key: key);
+  MainScreen({Key? key}) : super(key: key);
 
+  final user = FirebaseAuth.instance.currentUser!;
 
-   final user = FirebaseAuth.instance.currentUser!;
+  void signUserOut(BuildContext context) {
+    FirebaseAuth.instance.signOut();
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => LoginPage(onTapRegister: () {})),
+    );
+  }
 
-   void signUserOut(BuildContext context) {
-   FirebaseAuth.instance.signOut();
-   Navigator.pushReplacement(
-   context,
-   MaterialPageRoute(builder: (context) => LoginPage(onTapRegister: () {})),
-   );
-   }
+  void openreport(BuildContext context) {
+    Navigator.popUntil(context, (route) => route.isFirst);
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => IncidentReport()),
+    );
+  }
+
+  void openbully(BuildContext context) {
+    Navigator.popUntil(context, (route) => route.isFirst);
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => cyberbulling()),
+    );
+  }
+
+  void opencom(BuildContext context) {
+    Navigator.popUntil(context, (route) => route.isFirst);
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Community()),
+    );
+  }
+
+  void opennew(BuildContext context) {
+    Navigator.popUntil(context, (route) => route.isFirst);
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => NewsWidget()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        iconTheme: const IconThemeData(color: Colors.grey, size: 28),
-        actions: [
-          // IconButton(
-          //   onPressed: () {},
-          //   icon: const Icon(
-          //     Icons.search,
-          //     color: Colors.grey,
-          //   ),
-          // ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.notifications,
-              color: Colors.grey,
-            ),
-          ),
-          // Container(
-          //   margin: const EdgeInsets.only(top: 5, right: 16, bottom: 5),
-          //   child: const CircleAvatar(
-          //     backgroundImage: NetworkImage(
-          //         "https://images.unsplash.com/photo-1500522144261-ea64433bbe27?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTh8fHdvbWVufGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=500&q=60"),
-          //   ),
-          // )
-        ],
-      ),
-      drawer:  SideMenu(),
+      appBar: CustomAppBar("SafeSphere"), // Pass the title here
+      drawer: SideMenu(),
+
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Padding(
@@ -67,93 +70,137 @@ class MainScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-          RichText(
-          text: TextSpan(
-          text: "Hello ",
-            style: TextStyle(color: Colors.grey.shade900, fontSize: 20),
-            children: [
-              TextSpan(
-                text: "${user.email}",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
+              RichText(
+                text: TextSpan(
+                  text: "Welcome! ",
+                  style: GoogleFonts.abhayaLibre(
+                    color: Colors.grey.shade900,
+                    fontSize: 20,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: "${user.email}",
+                      style: GoogleFonts.abhayaLibre(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              TextSpan(
-                text: ", welcome back!",
+              const SizedBox(
+                height: 30,
+              ),
+              _buildCard(
+                onTap: () => openreport(context),
+                imagePath: 'images/box/box5.png',
+                imageAssetPath: 'images/pic/img5.png',
+                title: 'Incident Report',
+                description:
+                'Report cyberbullying, get expert support, track progress. Take charge of online safety. We\'re here to help!',
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              _buildCard(
+                onTap: () => opencom(context),
+                imagePath: 'images/box/box2.png',
+                imageAssetPath: 'images/pic/img6.png',
+                title: 'Community Forum',
+                description:
+                'Overcome cyberbullying trauma with our counsellors. Chat for guidance, connect with domain experts. Start healing today!',
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              _buildCard(
+                onTap: () => openbully(context),
+                imagePath: 'images/box/box3.png',
+                imageAssetPath: 'images/pic/img7.png',
+                title: 'All about Cyberbullying',
+                description:
+                'Expand knowledge on cyberbullying, its types, causes, impact. Test understanding with our quiz',
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              _buildCard(
+                onTap: () => opennew(context),
+                imagePath: 'images/box/box1.png',
+                imageAssetPath: 'images/pic/img8.png',
+                title: 'CyberNews',
+                description: 'Your One-Stop Source for Cybersecurity News',
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
 
-              const SizedBox(
-                height: 15,
+  Widget _buildCard({
+    required VoidCallback onTap,
+    required String imagePath,
+    required String imageAssetPath,
+    required String title,
+    required String description,
+  }) {
+    return Container(
+      width: double.infinity,
+      height: 150,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(imagePath),
+          fit: BoxFit.fill,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            blurRadius: 8,
+            offset: const Offset(0, 4),
+          ),
+        ],
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: GoogleFonts.poppins(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      description,
+                      style: GoogleFonts.acme(
+                        color: Colors.white,
+                        fontSize: 13, // Decreased font size
+                      ),
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
               ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: const [
-              //     Text(
-              //       "My Courses",
-              //       style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-              //     ),
-              //     Text(
-              //       "View All",
-              //       style: TextStyle(color: kDarkBlue),
-              //     ),
-              //   ],
-              // ),
-              const SizedBox(
-                height: 15,
+              Container(
+                margin: const EdgeInsets.only(right: 15),
+                child: Image.asset(
+                  imageAssetPath,
+                  height: 100,
+                ),
               ),
-              const CourseGrid(),
-              const SizedBox(
-                height: 20,
-              ),
-              // const PlaningHeader(),
-              // const SizedBox(
-              //   height: 15,
-              // ),
-              // const PlaningGrid(),Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: const [
-              //     Text(
-              //       "My Courses",
-              //       style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-              //     ),
-              //     Text(
-              //       "View All",
-              //       style: TextStyle(color: kDarkBlue),
-              //     ),
-              //   ],
-              // ),
-              // const SizedBox(
-              //   height: 15,
-              // ),
-              // const CourseGrid(),
-              // const SizedBox(
-              //   height: 20,
-              // ),
-              // const PlaningHeader(),
-              const SizedBox(
-                height: 15,
-              ),
-              // const PlaningGrid(),
-              const SizedBox(
-                height: 15,
-              ),
-              // const Text(
-              //   "Statistics",
-              //   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              // ),
-              // const SizedBox(
-              //   height: 15,
-              // ),
-              // const StatisticsGrid(),
-              // const SizedBox(
-              //   height: 15,
-              // ),
-              // const ActivityHeader(),
-              // const ChartContainer(chart: BarChartContent())
             ],
           ),
         ),

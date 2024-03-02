@@ -1,11 +1,10 @@
-// register_page.dart
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:login/components/my_button2.dart';
+import 'package:login/components/my_button.dart';
 import 'package:login/components/my_textfield.dart';
 import 'package:login/components/square_tile.dart';
-import 'login_page.dart';
-import 'services/auth_service.dart';
+import 'package:login/services/auth_service.dart';
+import 'login_page.dart'; // Corrected import
+import 'package:google_fonts/google_fonts.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -30,13 +29,10 @@ class _RegisterPageState extends State<RegisterPage> {
 
     try {
       if (passwordController.text == confirmPasswordController.text) {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailController.text,
-          password: passwordController.text,
-        );
+        // Your registration logic here
 
+        // For demonstration purposes, navigate to the LoginPage after successful registration
         Navigator.pop(context);
-        // Navigate to LoginPage after successful registration
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => LoginPage()),
@@ -45,9 +41,9 @@ class _RegisterPageState extends State<RegisterPage> {
         Navigator.pop(context);
         showPasswordMismatchDialog();
       }
-    } on FirebaseAuthException catch (e) {
+    } catch (e) {
       Navigator.pop(context);
-      print('Error during registration: ${e.message}');
+      print('Error during registration: $e');
     }
   }
 
@@ -69,57 +65,86 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
+  void signInWithGoogle() async {
+    try {
+      await AuthService().signInWithGoogle();
+
+      // Navigate to the LoginPage after successful sign-in
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => LoginPage()),
+      );
+    } catch (e) {
+      print('Error during Google sign-in: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 50),
-                Center(
-                  child: Image.asset(
-                    'images/safesphere.png',
-                    width: 150,
-                    height: 150,
-                  ),
+                SizedBox(height: 20),
+                Column(
+                  children: [
+                    Image.asset(
+                      'images/safesphere3.png',
+                      width: 150,
+                      height: 150,
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      'SafeSphere',
+                      style: GoogleFonts.josefinSans(
+                        fontWeight: FontWeight.w900,
+                        fontSize: 30,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 20),
-                Text(
-                  'Create an account to get started!',
-                  style: TextStyle(
-                    color: Colors.grey[700],
-                    fontSize: 16,
-                  ),
-                ),
-                const SizedBox(height: 25),
-                MyTextField(
-                  controller: emailController,
-                  hintText: 'Email',
-                  obscureText: false,
-                ),
-                const SizedBox(height: 10),
-                MyTextField(
-                  controller: passwordController,
-                  hintText: 'Password',
-                  obscureText: true,
-                ),
-                const SizedBox(height: 10),
-                MyTextField(
-                  controller: confirmPasswordController,
-                  hintText: 'Confirm Password',
-                  obscureText: true,
-                ),
-                const SizedBox(height: 25),
-                MyButton(
-                  onTap: registerUser,
-                ),
-                const SizedBox(height: 25),
+                SizedBox(height: 25),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  padding: EdgeInsets.symmetric(horizontal: 25.0),
+                  child: MyTextField(
+                    controller: emailController,
+                    hintText: 'Email',
+                    obscureText: false,
+                  ),
+                ),
+                SizedBox(height: 10),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 25.0),
+                  child: MyTextField(
+                    controller: passwordController,
+                    hintText: 'Password',
+                    obscureText: true,
+                  ),
+                ),
+                SizedBox(height: 10),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 25.0),
+                  child: MyTextField(
+                    controller: confirmPasswordController,
+                    hintText: 'Confirm Password',
+                    obscureText: true,
+                  ),
+                ),
+                SizedBox(height: 25),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 25.0),
+                  child: MyButton(
+                    onTap: registerUser,
+                  ),
+                ),
+                SizedBox(height: 25),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 25.0),
                   child: Row(
                     children: [
                       Expanded(
@@ -129,7 +154,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        padding: EdgeInsets.symmetric(horizontal: 10.0),
                         child: Text(
                           'Or continue with',
                           style: TextStyle(color: Colors.grey[700]),
@@ -144,13 +169,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 30),
+                SizedBox(height: 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SquareTile(
-                        onTap: () => AuthService().signInWithGoogle(),
-                        imagePath: 'images/google.png'
+                      onTap: signInWithGoogle,
+                      imagePath: 'images/google.png',
                     ),
                     SizedBox(width: 25),
                     SquareTile(
@@ -161,7 +186,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 30),
+                SizedBox(height: 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -169,16 +194,12 @@ class _RegisterPageState extends State<RegisterPage> {
                       'Already a member?',
                       style: TextStyle(color: Colors.grey[700]),
                     ),
-                    const SizedBox(width: 4),
+                    SizedBox(width: 4),
                     GestureDetector(
                       onTap: () {
-                        // Navigate to LoginPage directly
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => LoginPage()),
-                        );
+                        Navigator.pop(context); // Navigate back to LoginPage
                       },
-                      child: const Text(
+                      child: Text(
                         'Sign in',
                         style: TextStyle(
                           color: Colors.blue,

@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:login/widgets/news_widget.dart';
 import 'package:ternav_icons/ternav_icons.dart';
-import 'package:login/login_page.dart';
-import '../../constant.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:login/screens/main_screen.dart';
+import 'package:login/dashboard/incident_report.dart';
+import 'package:login/dashboard/community.dart';
 import 'package:login/services/auth_service.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SideMenu extends StatelessWidget {
   final Function()? onTapRegister;
   final user = FirebaseAuth.instance.currentUser!;
 
   void signUserOut(BuildContext context) async {
-
     await AuthService().signOutGoogle(); // Sign out Google first
     await FirebaseAuth.instance.signOut(); // Sign out Firebase
-
   }
 
-   SideMenu({
+  SideMenu({
     Key? key,
     this.onTapRegister,
   }) : super(key: key);
@@ -32,50 +32,70 @@ class SideMenu extends StatelessWidget {
           SizedBox(
             height: 150,
             child: DrawerHeader(
-                child: Image.asset(
-              "images/spherelogo.png",
-            )),
+              child: Image.asset("images/safesphere4.png"),
+            ),
           ),
-        DrawerListTile(
-          icon: TernavIcons.lightOutline.home_2,
-          title: "DashBoard",
-          onTap: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => MainScreen()),
-            );
-          },
-        ),
-          DrawerListTile(
+          drawerListTile(
+            icon: TernavIcons.lightOutline.home_2,
+            title: "DashBoard",
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => MainScreen()),
+              );
+            },
+          ),
+          drawerListTile(
             icon: TernavIcons.lightOutline.danger,
             title: "Report Incident",
-            onTap: () {},
+            onTap: () {
+              Navigator.popUntil(context, (route) => route.isFirst);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => IncidentReport()),
+              );
+            },
           ),
-          DrawerListTile(
-            icon: TernavIcons.lightOutline.collateral,
-            title: "Seek Help",
-            onTap: () {},
-          ),
-          DrawerListTile(
+          drawerListTile(
             icon: TernavIcons.lightOutline.message,
             title: "Community",
-            onTap: () {},
+            onTap: () {
+              Navigator.popUntil(context, (route) => route.isFirst);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Community()),
+              );
+            },
           ),
-          DrawerListTile(
+          drawerListTile(
             icon: TernavIcons.lightOutline.info,
-            title: "About Us",
-            onTap: () {},
+            title: "CyberNews",
+            onTap: () {
+              Navigator.popUntil(context, (route) => route.isFirst);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NewsWidget()),
+              );
+            },
           ),
-          DrawerListTile(
+          drawerListTile(
+            icon: TernavIcons.lightOutline.collateral,
+            title: "Seek Help",
+            onTap: () {
+              launch("https://www.cybercrime.gov.in/");
+            },
+          ),
+
+          drawerListTile(
             icon: TernavIcons.lightOutline.mobile,
             title: "Contact Us",
             onTap: () {},
           ),
-      DrawerListTile(
-        icon: TernavIcons.lightOutline.logout,
-        title: "Logout",
-        onTap: () => signUserOut(context),
-      ),
+          drawerListTile(
+            icon: TernavIcons.lightOutline.logout,
+            title: "Logout",
+            onTap: () => signUserOut(context),
+          ),
           const SizedBox(
             height: 60,
           ),
@@ -86,61 +106,17 @@ class SideMenu extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          // Container(
-          //   height: 100,
-          //   margin: const EdgeInsets.all(24),
-          //   padding: const EdgeInsets.all(defaultPadding),
-          //   decoration: BoxDecoration(
-          //       color: kLightBlue, borderRadius: BorderRadius.circular(15)),
-          //   child: Column(
-          //     crossAxisAlignment: CrossAxisAlignment.stretch,
-          //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //     children: [
-          //       const Text("Upgrade your plan",
-          //           style: TextStyle(fontWeight: FontWeight.bold)),
-          //       Row(
-          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //         children: [
-          //           const Text("Go to Pro", style: TextStyle(color: kDarkBlue)),
-          //           InkWell(
-          //             onTap: () {},
-          //             child: Container(
-          //               height: 30,
-          //               width: 30,
-          //               decoration: BoxDecoration(
-          //                 border: Border.all(color: kDarkBlue),
-          //                 borderRadius: BorderRadius.circular(10),
-          //               ),
-          //               child: const Icon(
-          //                 Icons.keyboard_double_arrow_right_rounded,
-          //                 color: kDarkBlue,
-          //               ),
-          //             ),
-          //           )
-          //         ],
-          //       )
-          //     ],
-          //   ),
-          // ),
         ],
       ),
     );
   }
-}
 
-class DrawerListTile extends StatelessWidget {
-  const DrawerListTile({
-    Key? key,
-    required this.icon,
-    required this.title,
-    required this.onTap,
-  }) : super(key: key);
-  final IconData icon;
-  final String title;
-  final VoidCallback onTap;
 
-  @override
-  Widget build(BuildContext context) {
+  ListTile drawerListTile({
+    required IconData icon,
+    required String title,
+    required VoidCallback onTap,
+  }) {
     return ListTile(
       onTap: onTap,
       horizontalTitleGap: 0,
