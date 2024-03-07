@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:login/widgets/news_widget.dart';
+import 'package:SafeSphere/widgets/news_widget.dart';
 import 'package:ternav_icons/ternav_icons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:login/screens/main_screen.dart';
-import 'package:login/dashboard/incident_report.dart';
-import 'package:login/dashboard/community.dart';
-import 'package:login/services/auth_service.dart';
+import 'package:SafeSphere/screens/main_screen.dart';
+import 'package:SafeSphere/dashboard/incident_report.dart';
+import 'package:SafeSphere/dashboard/community.dart';
+import 'package:SafeSphere/services/auth_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SideMenu extends StatelessWidget {
@@ -32,7 +32,7 @@ class SideMenu extends StatelessWidget {
           SizedBox(
             height: 150,
             child: DrawerHeader(
-              child: Image.asset("images/safesphere4.png"),
+              child: Image.asset("images/safesphere3.png"),
             ),
           ),
           drawerListTile(

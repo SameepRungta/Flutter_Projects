@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login/screens/main_screen.dart';
+import 'package:SafeSphere/screens/main_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void navigateBack(BuildContext context) {

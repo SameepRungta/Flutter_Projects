@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:login/screens/components/side_menu.dart';
-import 'package:login/components/functions.dart';
-import 'package:login/components/reportform.dart';
+import 'package:SafeSphere/screens/components/side_menu.dart';
+import 'package:SafeSphere/components/functions.dart';
+import 'package:SafeSphere/components/reportform.dart';
 
 class IncidentReport extends StatefulWidget {
   const IncidentReport({Key? key}) : super(key: key);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login/auth_page.dart';
+import 'package:SafeSphere/auth_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 

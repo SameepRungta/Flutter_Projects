@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:login/login_page.dart';
+import 'package:SafeSphere/login_page.dart';
 import 'screens/main_screen.dart';
 import 'register_page.dart'; // Import the registration page
 

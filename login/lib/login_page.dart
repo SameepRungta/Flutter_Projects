@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:login/screens/main_screen.dart';
-import 'package:login/components/my_button.dart';
-import 'package:login/components/my_textfield.dart';
-import 'package:login/components/square_tile.dart';
-import 'package:login/services/auth_service.dart';
+import 'package:SafeSphere/screens/main_screen.dart';
+import 'package:SafeSphere/components/my_button.dart';
+import 'package:SafeSphere/components/my_textfield.dart';
+import 'package:SafeSphere/components/square_tile.dart';
+import 'package:SafeSphere/services/auth_service.dart';
 import 'register_page.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:login/dashboard/community.dart';
-import 'package:login/login_page.dart';
-import 'package:login/widgets/news_widget.dart';
+import 'package:SafeSphere/dashboard/community.dart';
+import 'package:SafeSphere/login_page.dart';
+import 'package:SafeSphere/widgets/news_widget.dart';
 import 'components/side_menu.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:login/dashboard/incident_report.dart';
-import 'package:login/dashboard/community.dart';
+import 'package:SafeSphere/dashboard/incident_report.dart';
+import 'package:SafeSphere/dashboard/community.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:login/dashboard/bully.dart';
-import 'package:login/components/functions.dart';
+import 'package:SafeSphere/dashboard/bully.dart';
+import 'package:SafeSphere/components/functions.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen({Key? key}) : super(key: key);

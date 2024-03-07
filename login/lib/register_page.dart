@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:login/components/my_button.dart';
-import 'package:login/components/my_textfield.dart';
-import 'package:login/components/square_tile.dart';
-import 'package:login/services/auth_service.dart';
-import 'login_page.dart'; // Corrected import
+import 'package:SafeSphere/components/my_button2.dart';
+import 'package:SafeSphere/components/my_textfield.dart';
+import 'package:SafeSphere/components/square_tile.dart';
+import 'package:SafeSphere/services/auth_service.dart';
+import 'login_page.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:SafeSphere/screens/main_screen.dart';
+
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -72,7 +74,7 @@ class _RegisterPageState extends State<RegisterPage> {
       // Navigate to the LoginPage after successful sign-in
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => LoginPage()),
+        MaterialPageRoute(builder: (context) => MainScreen()),
       );
     } catch (e) {
       print('Error during Google sign-in: $e');

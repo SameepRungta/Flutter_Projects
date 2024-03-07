@@ -1,8 +1,8 @@
 //import 'package:cyberbulling/cyberbulling.dart';
 import 'package:flutter/material.dart';
-import 'package:login/screens/components/side_menu.dart';
+import 'package:SafeSphere/screens/components/side_menu.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:login/components/functions.dart';
+import 'package:SafeSphere/components/functions.dart';
 
 class cyberbulling extends StatefulWidget {
   const cyberbulling({super.key});

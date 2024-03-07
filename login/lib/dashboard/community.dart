@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:login/components/com_post.dart';
-import 'package:login/screens/components/side_menu.dart';
-import 'package:login/components/functions.dart';
+import 'package:SafeSphere/components/com_post.dart';
+import 'package:SafeSphere/screens/components/side_menu.dart';
+import 'package:SafeSphere/components/functions.dart';
 
 class Community extends StatefulWidget {
   static const String UserPostsCollection = "User Posts";

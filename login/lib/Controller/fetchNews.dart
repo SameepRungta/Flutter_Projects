@@ -2,7 +2,7 @@
 
 import 'dart:convert';
 import 'package:http/http.dart';
-import 'package:login/components/news.dart';
+import 'package:SafeSphere/components/news.dart';
 
 class FetchNews {
   static Future<List<News>> fetchNews() async {

@@ -1,11 +1,11 @@
 // news_widget.dart
 
 import 'package:flutter/material.dart';
-import 'package:login/Controller/fetchNews.dart';
-import 'package:login/components/news.dart';
-import 'package:login/screens/components/news_detail_screen.dart';
-import 'package:login/components/functions.dart';
-import 'package:login/screens/components/side_menu.dart';
+import 'package:SafeSphere/Controller/fetchNews.dart';
+import 'package:SafeSphere/components/news.dart';
+import 'package:SafeSphere/screens/components/news_detail_screen.dart';
+import 'package:SafeSphere/components/functions.dart';
+import 'package:SafeSphere/screens/components/side_menu.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class NewsWidget extends StatefulWidget {

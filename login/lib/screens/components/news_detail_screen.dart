@@ -1,6 +1,6 @@
 // news_detail_screen.dart
 import 'package:flutter/material.dart';
-import 'package:login/components/news.dart';
+import 'package:SafeSphere/components/news.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -127,7 +127,7 @@ class NewsDetailScreen extends StatelessWidget {
                       launch(newsItem.url);
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.blueAccent,
+                      backgroundColor: Colors.blueAccent,
                     ),
                     child: Text(
                       'Read More',
@@ -145,7 +145,7 @@ class NewsDetailScreen extends StatelessWidget {
                 Navigator.pop(context);
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.blueAccent,
+                backgroundColor: Colors.blueAccent,
               ),
               child: Text(
                 'Back to News',
