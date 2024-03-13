@@ -1,3 +1,4 @@
+import 'package:SafeSphere/dashboard/Aboutus.dart';
 import 'package:flutter/material.dart';
 import 'package:SafeSphere/widgets/news_widget.dart';
 import 'package:ternav_icons/ternav_icons.dart';
@@ -7,6 +8,7 @@ import 'package:SafeSphere/dashboard/incident_report.dart';
 import 'package:SafeSphere/dashboard/community.dart';
 import 'package:SafeSphere/services/auth_service.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:SafeSphere/dashboard/Aboutus.dart';
 
 class SideMenu extends StatelessWidget {
   final Function()? onTapRegister;
@@ -88,8 +90,14 @@ class SideMenu extends StatelessWidget {
 
           drawerListTile(
             icon: TernavIcons.lightOutline.mobile,
-            title: "Contact Us",
-            onTap: () {},
+            title: "About Us",
+            onTap: () {
+              Navigator.popUntil(context, (route) => route.isFirst);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Aboutus()),
+              );
+            },
           ),
           drawerListTile(
             icon: TernavIcons.lightOutline.logout,

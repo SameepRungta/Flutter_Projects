@@ -48,6 +48,7 @@ dependencies:
   url_launcher: any
   firebase_database: ^10.3.2
   uuid: ^3.0.4
+  rxdart: ^0.27.2
 
 dev_dependencies:
   flutter_test:

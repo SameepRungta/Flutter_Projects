@@ -8,7 +8,7 @@ class FetchNews {
   static Future<List<News>> fetchNews() async {
     try {
       Response response = await get(Uri.parse(
-          "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=12e818a49e91484db02b496c42900746"));
+          "https://newsapi.org/v2/top-headlines?country=in&category=Technology&apiKey=12e818a49e91484db02b496c42900746"));
 
       List<dynamic> newsList = jsonDecode(response.body)['articles'];
 

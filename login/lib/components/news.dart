@@ -27,7 +27,7 @@ class News {
     return News(
       title: json['title'] ?? "",
       description: json['description'] ?? "",
-      author: json['author'] ?? "",
+       author: json['author'] ?? "",
       publishedAt: json['date'] ?? "",
       url: json['url'] ?? "",
       source: json['source']['name'] ?? "",

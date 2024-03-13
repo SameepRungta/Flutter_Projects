@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:SafeSphere/dashboard/community.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:SafeSphere/login_page.dart';
 import 'package:SafeSphere/widgets/news_widget.dart';
+import '../components/functions.dart';
+import '../dashboard/bully.dart';
+import '../services/chatbot.dart';
 import 'components/side_menu.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:SafeSphere/dashboard/incident_report.dart';
 import 'package:SafeSphere/dashboard/community.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:SafeSphere/dashboard/bully.dart';
-import 'package:SafeSphere/components/functions.dart';
+
 
 class MainScreen extends StatelessWidget {
   MainScreen({Key? key}) : super(key: key);
@@ -56,11 +56,27 @@ class MainScreen extends StatelessWidget {
     );
   }
 
+  void openChat(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Container(
+          padding: EdgeInsets.all(16.0),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
+          ),
+          child: ChatBox(userEmail: user.email!), // Replace with the actual user email
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: CustomAppBar("SafeSphere"), // Pass the title here
+      appBar: CustomAppBar("SafeSphere"), // Replace with your actual app bar
       drawer: SideMenu(),
 
       body: SingleChildScrollView(
@@ -73,14 +89,14 @@ class MainScreen extends StatelessWidget {
               RichText(
                 text: TextSpan(
                   text: "Welcome! ",
-                  style: GoogleFonts.abhayaLibre(
+                  style: TextStyle(
                     color: Colors.grey.shade900,
                     fontSize: 20,
                   ),
                   children: [
                     TextSpan(
                       text: "${user.email}",
-                      style: GoogleFonts.abhayaLibre(
+                      style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
@@ -135,6 +151,14 @@ class MainScreen extends StatelessWidget {
           ),
         ),
       ),
+
+      // Floating action button for the chat
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => openChat(context),
+        child: Image.asset('images/cbot.png', width: 100, height: 100),
+        backgroundColor: Colors.white, // Set the desired color
+      ),
     );
   }
 
@@ -175,7 +199,7 @@ class MainScreen extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: GoogleFonts.poppins(
+                      style: TextStyle(
                         color: Colors.black,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -184,7 +208,7 @@ class MainScreen extends StatelessWidget {
                     const SizedBox(height: 10),
                     Text(
                       description,
-                      style: GoogleFonts.acme(
+                      style: TextStyle(
                         color: Colors.white,
                         fontSize: 13, // Decreased font size
                       ),
